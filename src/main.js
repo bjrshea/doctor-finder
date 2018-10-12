@@ -20,16 +20,17 @@ $(document).ready(function() {
         format: 'json'
       },
       success: function(response) {
-        newBetterDoctor.name = response.data[0].practices[0].name
-        newBetterDoctor.street = response.data[0].practices[0].visit_address.street
-        newBetterDoctor.city = response.data[0].practices[0].visit_address.city
-        newBetterDoctor.state = response.data[0].practices[0].visit_address.state
-        newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip
-        newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number
-        console.log(newBetterDoctor);
+        newBetterDoctor.name = response.data[0].practices[0].name;
+        newBetterDoctor.street = response.data[0].practices[0].visit_address.street;
+        newBetterDoctor.city = response.data[0].practices[0].visit_address.city;
+        newBetterDoctor.state = response.data[0].practices[0].visit_address.state;
+        newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip;
+        newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number;
+
+        $('#results').append('<p>' + newBetterDoctor.name + '</p><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Phone Number: ' + newBetterDoctor.phoneNumber + '</p>')
       },
       error: function() {
-        console.log("hi");
+
       }
     });
   });
