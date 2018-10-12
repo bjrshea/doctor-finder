@@ -1,12 +1,14 @@
 export default class BetterDoctor  {
-  constructor(firstName, lastName, street, city, state, zip, phoneNumber) {
+  constructor(name, picture, street, city, state, zip, patients, phoneNumber, noResults) {
 
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.name = name;
+    this.picture = picture;
     this.street = street;
     this.city = city;
     this.state = state;
     this.zip = zip;
+    this.patients = patients;
     this.phoneNumber = phoneNumber;
+    this.noResults = noResults;
   }
 }

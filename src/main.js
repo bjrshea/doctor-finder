@@ -6,7 +6,7 @@ import BetterDoctor from './BetterDoctor.js';
 
 $(document).ready(function() {
   $('#user-button').click(function() {
-    let newBetterDoctor = new BetterDoctor;
+    const newBetterDoctor = new BetterDoctor;
     const symptoms = $('#symptoms').val();
     $('#symptoms').val('');
     const doctorFirstName = $('#doctor-first-name').val();
@@ -20,30 +20,39 @@ $(document).ready(function() {
         format: 'json'
       },
       success: function(response) {
-        newBetterDoctor.name = response.data[0].practices[0].name;
-        newBetterDoctor.picture = response.data[0].profile.image_url;
-        newBetterDoctor.street = response.data[0].practices[0].visit_address.street;
-        newBetterDoctor.city = response.data[0].practices[0].visit_address.city;
-        newBetterDoctor.state = response.data[0].practices[0].visit_address.state;
-        newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip;
-        newBetterDoctor.patients = response.data[0].practices[0].accepts_new_patients;
-        newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number;
-        newBetterDoctor.website = response.data[0].practices[0].website;
-
-        if (newBetterDoctor.patients == true) {
-          newBetterDoctor.patients = "Yes";
+        newBetterDoctor.noResults = response.meta.total;
+        if (newBetterDoctor.noResults == 0) {
+          $('#results').html('<h2>Results:</h2><p>We could not find a doctor with that search. Please try again.</p>')
         } else {
-          newBetterDoctor.patients = "No";
-        }
+          newBetterDoctor.name = response.data[0].practices[0].name;
+          newBetterDoctor.picture = response.data[0].profile.image_url;
+          newBetterDoctor.street = response.data[0].practices[0].visit_address.street;
+          newBetterDoctor.city = response.data[0].practices[0].visit_address.city;
+          newBetterDoctor.state = response.data[0].practices[0].visit_address.state;
+          newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip;
+          newBetterDoctor.patients = response.data[0].practices[0].accepts_new_patients;
+          newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number;
+          newBetterDoctor.website = response.data[0].practices[0].website;
 
-        if (newBetterDoctor.website == undefined) {
-          newBetterDoctor.website = "n/a";
-        }
+          if (newBetterDoctor.patients == true) {
+            newBetterDoctor.patients = "Yes";
+          } else {
+            newBetterDoctor.patients = "No";
+          }
 
-        $('#results').html('<h2>Results:</h2><p>' + newBetterDoctor.name + '</p><img src="' + newBetterDoctor.picture + '"><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Accepting new patients: ' + newBetterDoctor.patients + '</p><p>Phone number: ' + newBetterDoctor.phoneNumber + '</p><p>Website: ' + newBetterDoctor.website + '</p>')
+          if (newBetterDoctor.website == undefined) {
+            newBetterDoctor.website = "n/a";
+          }
+
+          if (newBetterDoctor.noResults == 0) {
+            $('#results').html('<h2>Results:</h2><p>We could not find a doctor with that search. Please try again.</p>')
+          }
+
+          $('#results').html('<h2>Results:</h2><p>' + newBetterDoctor.name + '</p><img src="' + newBetterDoctor.picture + '"><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Accepting new patients: ' + newBetterDoctor.patients + '</p><p>Phone number: ' + newBetterDoctor.phoneNumber + '</p><p>Website: ' + newBetterDoctor.website + '</p>');
+        }
       },
       error: function() {
-
+        $('#results').append("It's not you, it's us. Please try your search again later.");
       }
     });
   });
