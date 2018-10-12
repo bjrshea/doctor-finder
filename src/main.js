@@ -28,6 +28,7 @@ $(document).ready(function() {
         newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip;
         newBetterDoctor.patients = response.data[0].practices[0].accepts_new_patients;
         newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number;
+        newBetterDoctor.website = response.data[0].practices[0].website;
 
         if (newBetterDoctor.patients == true) {
           newBetterDoctor.patients = "Yes";
@@ -35,9 +36,11 @@ $(document).ready(function() {
           newBetterDoctor.patients = "No";
         }
 
-        console.log(response);
+        if (newBetterDoctor.website == undefined) {
+          newBetterDoctor.website = "n/a";
+        }
 
-        $('#results').html('<h2>Results:</h2><p>' + newBetterDoctor.name + '</p><img src="' + newBetterDoctor.picture + '"><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Accepting new patients: ' + newBetterDoctor.patients + '</p><p>Phone number: ' + newBetterDoctor.phoneNumber + '</p>')
+        $('#results').html('<h2>Results:</h2><p>' + newBetterDoctor.name + '</p><img src="' + newBetterDoctor.picture + '"><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Accepting new patients: ' + newBetterDoctor.patients + '</p><p>Phone number: ' + newBetterDoctor.phoneNumber + '</p><p>Website: ' + newBetterDoctor.website + '</p>')
       },
       error: function() {
 
