@@ -21,13 +21,23 @@ $(document).ready(function() {
       },
       success: function(response) {
         newBetterDoctor.name = response.data[0].practices[0].name;
+        newBetterDoctor.picture = response.data[0].profile.image_url;
         newBetterDoctor.street = response.data[0].practices[0].visit_address.street;
         newBetterDoctor.city = response.data[0].practices[0].visit_address.city;
         newBetterDoctor.state = response.data[0].practices[0].visit_address.state;
         newBetterDoctor.zip = response.data[0].practices[0].visit_address.zip;
+        newBetterDoctor.patients = response.data[0].practices[0].accepts_new_patients;
         newBetterDoctor.phoneNumber = response.data[0].practices[0].phones[0].number;
 
-        $('#results').append('<p>' + newBetterDoctor.name + '</p><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Phone Number: ' + newBetterDoctor.phoneNumber + '</p>')
+        if (newBetterDoctor.patients == true) {
+          newBetterDoctor.patients = "Yes";
+        } else {
+          newBetterDoctor.patients = "No";
+        }
+
+        console.log(response);
+
+        $('#results').html('<h2>Results:</h2><p>' + newBetterDoctor.name + '</p><img src="' + newBetterDoctor.picture + '"><p>' + newBetterDoctor.street + '</p><p>' + newBetterDoctor.city + ', ' + newBetterDoctor.state + " " + newBetterDoctor.zip + '</p><br><p>Accepting new patients: ' + newBetterDoctor.patients + '</p><p>Phone number: ' + newBetterDoctor.phoneNumber + '</p>')
       },
       error: function() {
 
