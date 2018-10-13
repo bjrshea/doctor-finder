@@ -1,0 +1,36 @@
+header, body {
+  background-color: #FFF2CC;
+}
+header {
+  text-align: center;
+  font-family: 'Julius Sans One', sans-serif;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  padding: 15px;
+}
+.container {
+  margin: 5% auto;
+}
+.user-form {
+  display: flex;
+  justify-content: center;
+}
+.user-form-box input {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.user-form-box button {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+#results {
+  margin-top: 20px;
+}
+#results img {
+  margin-bottom: 20px;
+}

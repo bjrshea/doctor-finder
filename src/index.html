@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>Doctor Finder</title>
+  <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 </head>
 <body>
+  <header>
+    <h1>The Waiting Room</h1>
+  </header>
   <div class="container">
     <form class="user-form">
-      <input id="symptoms" type="text" placeholder="Enter a symptom">
-      <input id="doctor-first-name" type="text" placeholder="Doctor's first name">
-      <input id="doctor-last-name" type="text" placeholder="Doctor's last name">
+      <div class="user-form-box">
+        <input id="symptoms" type="text" placeholder="Enter a symptom">
+        <input id="doctor-first-name" type="text" placeholder="Doctor's first name">
+        <input id="doctor-last-name" type="text" placeholder="Doctor's last name">
+      </div>
       <button id="user-button" type="button">Submit</button>
     </form>
     <div id="results"></div>
