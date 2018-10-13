@@ -12,8 +12,10 @@ Need a doctor? Using the Doctor Finder, you can enter flu-like symptoms and be r
 
 | Behavior | Input | Output |
 |----------|-------|--------|
-| User enters in flu-like symptoms using the input field. | sore throat | 27 results from doctors who have openings. |
-| User enters in flu-like symptoms using the input field. | Sore Throat | 0 results from doctors who have openings. |
+| User enters their symptoms and receives a match. | sore throat | Will receive the top result in the Portland area which includes the doctor's name, address, phone number, website (if applicable), and whether or not they're taking new patients. |
+| User enters a doctor's name and receives a match. | John Smith | Will receive the top result in the Portland area which includes the doctor's name, address, phone number, website (if applicable), and whether or not they're taking new patients. |
+| User searches using symptoms, doctor's name, or both, but they don't receive a match. | toothache | "We could not find a doctor with that search. Please try again." |
+| User searches using symptoms, doctor's name, or both, but there's an error loading the API results. | sore throat | "It's not you, it's us. Please try your search again later." |
 
 ## Install Instructions
 
